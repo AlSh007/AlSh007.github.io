@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "762f77f9a6bd224de90b864b8d2fb4fc",
+    "revision": "c40d8a911a112141774297fa6bcd97af",
     "url": "/index.html"
   },
   {
-    "revision": "5437a1268f5621191309",
+    "revision": "be191434a450f1db695c",
     "url": "/static/css/main.fbfd6c6f.chunk.css"
   },
   {
-    "revision": "1a2a8503898c2c5efc5a",
-    "url": "/static/js/2.dde84de4.chunk.js"
+    "revision": "f58de5b2f081bc5e257e",
+    "url": "/static/js/2.5602a04c.chunk.js"
   },
   {
-    "revision": "5437a1268f5621191309",
-    "url": "/static/js/main.ef4f7fe0.chunk.js"
+    "revision": "be191434a450f1db695c",
+    "url": "/static/js/main.5d1b6549.chunk.js"
   },
   {
     "revision": "e29da024b727519a10eb",
@@ -56,6 +56,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/address_image.16559172.svg"
   },
   {
+    "revision": "16bc1b000decb05969435d869067704a",
+    "url": "/static/media/anckr_cover.16bc1b00.jpg"
+  },
+  {
     "revision": "eaf02c2d0158b6b4b8c2a0a0cf830a04",
     "url": "/static/media/animated_ashutosh.eaf02c2d.png"
   },
@@ -78,6 +82,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "5f915405511f649dad433a6db9adbff4",
     "url": "/static/media/contactMail.5f915405.png"
+  },
+  {
+    "revision": "5c50513dc4e08675368bce091f2e4501",
+    "url": "/static/media/corteva.5c50513d.png"
   },
   {
     "revision": "ebf35d7f33ebbd4a4c6cff7e66e21fdb",
