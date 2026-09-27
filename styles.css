@@ -65,6 +65,13 @@ a:hover { color: var(--accent); }
 .top nav { display: flex; gap: clamp(0.9rem, 3vw, 2rem); font-size: 0.95rem; }
 .top nav a { text-decoration: none; color: var(--ink-soft); }
 .top nav a:hover { color: var(--ink); }
+.top nav a { position: relative; transition: color .25s; }
+.top nav a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -0.3rem; height: 2px; border-radius: 2px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+}
+.top nav a[aria-current="true"] { color: var(--ink); }
+.top nav a[aria-current="true"]::after { transform: scaleX(1); }
 
 main { padding: 0 var(--gutter); }
 
@@ -137,9 +144,26 @@ h1 {
 .block .body { max-width: 46rem; }
 
 /* Roles */
-.role { padding-left: 1.5rem; border-left: 2px solid var(--rule); }
+/* One line runs through every role. With JS it fills as you scroll (--p, 0 to 1)
+   and each role's dot lights when the fill reaches it. */
+.timeline { position: relative; --p: 1; }
+.timeline::before, .timeline::after {
+  content: ""; position: absolute; left: 0; top: 0.9rem; bottom: 0.5rem; width: 2px; border-radius: 2px;
+}
+.timeline::before { background: var(--rule); }
+.timeline::after { background: var(--accent); transform-origin: top; transform: scaleY(var(--p)); }
+.role { position: relative; padding-left: 1.75rem; }
 .role + .role { margin-top: 3rem; }
-.role.current { border-left-color: var(--live); }
+.role::before {
+  content: ""; position: absolute; z-index: 1; left: -5px; top: 0.55rem;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 0 4px var(--paper);
+}
+.js .role::before { background: var(--paper); border: 2px solid var(--rule); transition: background-color .3s, border-color .3s, transform .3s; }
+.js .role.lit::before { background: var(--accent); border-color: var(--accent); transform: scale(1.15); }
+.js .role h3 { transition: color .3s; }
+.js .role:not(.lit):not(.current) h3 { color: var(--ink-soft); }
+.role.current::before, .js .role.current::before { background: var(--live); border-color: var(--live); }
 .role header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 1rem; }
 .role h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.03em; margin: 0; line-height: 1.1; }
 .when { margin: 0; font-family: var(--display); font-size: 0.95rem; color: var(--ink-soft); }
@@ -202,10 +226,11 @@ h1 {
   body { font-size: 1.0625rem; }
   .top nav a[href="#skills"] { display: none; }
   .skills div { grid-template-columns: 1fr; gap: 0.2rem; }
-  .role { padding-left: 1rem; }
+  .role { padding-left: 1.4rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .trace::before, .trace li { animation: none; opacity: 1; transform: none; }
+  .top nav a, .top nav a::after, .js .role::before, .js .role h3 { transition: none; }
 }
