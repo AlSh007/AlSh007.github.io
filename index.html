@@ -4,13 +4,19 @@
   <meta charset="utf-8">
   <script>document.documentElement.classList.add("js")</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alok Sharma</title>
+  <title>Alok Sharma, Forward Deployed Engineer</title>
   <meta name="description" content="Alok Sharma is a forward deployed engineer at Future Path, building LLM workflows, retrieval systems and the backends that run them in production.">
   <meta name="author" content="Alok Sharma">
   <meta property="og:title" content="Alok Sharma, forward deployed engineer">
   <meta property="og:description" content="I take AI from a customer's messy workflow to something that runs in production.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://alsh007.github.io/">
+  <meta property="og:image" content="https://alsh007.github.io/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Alok Sharma, forward deployed engineer. I take AI from a customer's messy workflow to production.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://alsh007.github.io/og.png">
   <meta name="theme-color" content="#F3F5F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0F1612" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -26,6 +32,7 @@
     <a class="mark" href="#top" aria-label="Alok Sharma, back to top">AS</a>
     <nav aria-label="Sections">
       <a href="#work">Work</a>
+      <a href="#open-source">Open source</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
@@ -105,30 +112,69 @@
       </div>
     </section>
 
+    <section class="block" id="open-source" aria-labelledby="oss-h">
+      <h2 id="oss-h">Open source</h2>
+      <div class="body oss">
+        <p class="oss-lede">14 merged pull requests across 5 LLM routing and inference projects, including vLLM's <a href="https://github.com/vllm-project/semantic-router">semantic-router</a>, <a href="https://github.com/vllm-project/aibrix">AIBrix</a> and <a href="https://github.com/llm-d/llm-d">llm-d</a> (each with thousands of stars). Mostly bug fixes with tests: I trace the failing code path, reproduce it, and fix it the way the maintainers would.</p>
+
+        <ul class="oss-rows">
+            <li><span class="repo">AIBrix</span><a href="https://github.com/vllm-project/aibrix/pull/2846">#2846</a> Enforce the prefix-hash table's <code>maxContexts</code> cap and evict expired pods, code that was never actually called. <a href="https://github.com/AlSh007/AlSh007/blob/main/writeups/aibrix-prefix-cache-eviction.md">Write-up on what the review taught me</a>.</li>
+            <li><span class="repo">semantic-router</span><a href="https://github.com/vllm-project/semantic-router/pull/4712">#4712</a> Keep dispatch failures when tool observability headers are added, so a rejected request no longer goes upstream.</li>
+            <li><span class="repo">semantic-router</span><a href="https://github.com/vllm-project/semantic-router/pull/4858">#4858</a> Stop mirroring a request the router rejected to the shadow model.</li>
+            <li><span class="repo">AIBrix</span><a href="https://github.com/vllm-project/aibrix/pull/2975">#2975</a> Report a missing latency in the pending-load estimate, so routers stop treating an incomplete pod profile as free.</li>
+            <li><span class="repo">agent-router</span><a href="https://github.com/theagentrouter/agent-router/pull/2749">#2749</a> Accept <code>reasoning_effort: high</code> for Gemini 3 Pro and map <code>medium</code> to the right thinking level per model.</li>
+        </ul>
+
+        <p class="oss-also"><b>Also merged:</b>
+          semantic-router <a href="https://github.com/vllm-project/semantic-router/pull/4759">#4759</a> <a href="https://github.com/vllm-project/semantic-router/pull/4631">#4631</a> ·
+          AIBrix <a href="https://github.com/vllm-project/aibrix/pull/3073">#3073</a> <a href="https://github.com/vllm-project/aibrix/pull/2976">#2976</a> <a href="https://github.com/vllm-project/aibrix/pull/2832">#2832</a> ·
+          llmgateway <a href="https://github.com/theopenco/llmgateway/pull/4260">#4260</a> <a href="https://github.com/theopenco/llmgateway/pull/3960">#3960</a> ·
+          llm-d <a href="https://github.com/llm-d/llm-d/pull/2410">#2410</a> <a href="https://github.com/llm-d/llm-d/pull/2599">#2599</a>
+        </p>
+        <p class="oss-more"><a href="https://github.com/pulls?q=is%3Apr+is%3Amerged+author%3AAlSh007+-user%3AAlSh007">All merged pull requests on GitHub</a></p>
+      </div>
+    </section>
+
     <section class="block" id="projects" aria-labelledby="projects-h">
       <h2 id="projects-h">Projects</h2>
       <div class="body projects">
         <article class="project feature">
-          <h3><a href="https://github.com/AlSh007/Forge-AI">Forge-AI</a></h3>
-          <p>An autonomous coding platform. Give it a task and a GitHub repo, and six agents (product manager, architect, database, backend, frontend, devops) produce a plan, the code and optionally a pull request, streamed live to a pipeline dashboard. It's where I test agent reliability, retries, memory and human-in-the-loop control.</p>
-          <p class="stack">LangGraph-style orchestration, tool use, state management</p>
+          <h3><a href="https://github.com/AlSh007/forge-ai">Forge-AI</a></h3>
+          <p>An autonomous coding platform. Give it a task and a GitHub repo, and six agents (product manager, architect, database, backend, frontend, devops) produce a plan, the code and optionally a pull request, streamed live to a pipeline dashboard.</p>
+          <p>Built around reliability: agents read the target repo through tools before generating, generated files go through deterministic validation and a repair pass that is kept only if it reduces errors, PR creation is gated on the DevOps verdict, and tasks can be cancelled or time out.</p>
+          <p class="stack">Next.js, Express, TypeScript, Prisma and PostgreSQL, Supabase auth, Groq-hosted Llama models</p>
+          <p class="plinks"><a href="https://github.com/AlSh007/forge-ai#demo">Watch the demo</a><a href="https://github.com/AlSh007/forge-ai">Source</a><a href="https://forge-ai-frontend-seven.vercel.app">Live app (GitHub sign-in)</a></p>
         </article>
         <article class="project">
-          <h3><a href="https://github.com/AlSh007/Code_reviewer">Code Reviewer</a></h3>
-          <p>A local-first CLI that reviews your git changes before you commit or open a PR.</p>
+          <h3><a href="https://github.com/AlSh007/prereview_cli">Code Reviewer</a></h3>
+          <p>A local-first CLI that reviews your staged changes, a diff or a single file before you commit or open a PR. 39 deterministic rules, with optional AI semantic and architecture review. Outputs terminal, JSON, Markdown or SARIF, with a severity gate for CI.</p>
+          <p class="stack">TypeScript, Node</p>
+          <p class="plinks"><a href="https://github.com/AlSh007/prereview_cli#demo">Watch the demo</a><a href="https://github.com/AlSh007/prereview_cli">Source</a></p>
         </article>
         <article class="project">
-          <h3><a href="https://github.com/AlSh007/python-tutor-web">Python Tutor Web</a></h3>
-          <p>A step-by-step visualizer that shows Python code executing line by line.</p>
+          <h3><a href="https://github.com/AlSh007/pystep">Python Tutor Web</a></h3>
+          <p>Run a snippet and step through it line by line while the stack and heap update, with arrows for references, including circular ones. A tracer runs your code in a subprocess with a step limit and timeout.</p>
+          <p class="stack">React, TypeScript, Flask, sys.settrace</p>
+          <p class="plinks"><a href="https://github.com/AlSh007/pystep#demo">Watch the demo</a><a href="https://github.com/AlSh007/pystep">Source</a></p>
         </article>
         <article class="project">
-          <h3><a href="https://github.com/AlSh007/leetcode_extension">LeetCode Sync</a></h3>
-          <p>A Chrome extension that pushes each accepted LeetCode solution into a GitHub repo, one folder per problem.</p>
+          <h3><a href="https://github.com/AlSh007/leetpush">LeetCode Sync</a></h3>
+          <p>A Chrome extension that pushes each accepted LeetCode solution to a GitHub repo, one folder per problem, with a generated README. It reads the whole editor buffer and refuses to push a partial file. Optional AI complexity analysis and hints.</p>
+          <p class="stack">JavaScript, Chrome Manifest V3</p>
+          <p class="plinks"><a href="https://github.com/AlSh007/leetpush#-demo">Watch the demo</a><a href="https://github.com/AlSh007/leetpush">Source</a></p>
+        </article>
+        <article class="project">
+          <h3><a href="https://github.com/AlSh007/issue2pr">issue2pr</a></h3>
+          <p>An agent that turns a GitHub issue into a pull request: it plans, codes and reviews the change, with human approval and a web view of the workflow.</p>
+          <p class="stack">Python</p>
+          <p class="plinks"><a href="https://github.com/AlSh007/issue2pr">Source</a></p>
         </article>
         <article class="project">
           <h3>WGANs for brain-computer interfaces</h3>
           <p>A Wasserstein GAN that augments EEG data, with CNN models for motor-imagery classification.</p>
+          <p class="stack">TensorFlow, Python</p>
         </article>
+        <p class="proj-note">Demo videos are illustrative walkthroughs of each tool's interface, as noted in each README.</p>
       </div>
     </section>
 

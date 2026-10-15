@@ -44,14 +44,14 @@ const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((e) => (e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id)));
     // Education sits between Skills and Contact without its own link, so it keeps Skills lit.
-    const order = ["work", "projects", "skills", "education", "contact"];
+    const order = ["work", "open-source", "projects", "skills", "education", "contact"];
     let current = order.filter((id) => visible.has(id)).pop();
     if (current === "education") current = "skills";
     links.forEach((a, id) => (id === current ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
   },
   { rootMargin: "-45% 0px -50% 0px" }
 );
-["work", "projects", "skills", "education", "contact"].forEach((id) => {
+["work", "open-source", "projects", "skills", "education", "contact"].forEach((id) => {
   const el = document.getElementById(id);
   if (el) observer.observe(el);
 });
